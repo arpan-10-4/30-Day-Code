@@ -1,0 +1,61 @@
+/*
+Problem Statement:
+
+You are given an array of integers (which may contain duplicate values, negative numbers, and very large or small values).
+
+Your task is to find the second largest distinct element in the array.
+
+If there is no second distinct largest element (because all elements are the same), print "NO".
+
+Important:
+- The "second largest" must be different from the largest.
+- Duplicates do not count as different elements.
+
+Input Format:
+The first line contains an integer n — the number of elements in the array.
+The second line contains n space-separated integers.
+
+Constraints:
+2 ≤ n ≤ 10^5
+-10^9 ≤ arr[i] ≤ 10^9
+
+Output Format:
+Print the second largest distinct element.
+If it does not exist, print NO.
+
+Sample Input:
+6
+5 3 9 1 9 5
+
+Sample Output:
+5
+*/
+
+import java.io.*;
+import java.util.*;
+
+public class SecondLargestDistinct {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        Integer arr[] = new Integer[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        List<Integer> list = new ArrayList<>(Arrays.asList(arr));
+        Collections.sort(list, Collections.reverseOrder());
+
+        int first = list.get(0);
+        for (int i = 1; i < list.size(); i++) {
+            if (!list.get(i).equals(first)) {
+                System.out.println(list.get(i));
+                return;
+            }
+        }
+
+        System.out.println("NO");
+    }
+}
