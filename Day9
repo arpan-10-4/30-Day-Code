@@ -1,0 +1,57 @@
+// Day XX – First Non-Repeating Character
+// Problem:
+// Given a string S consisting of lowercase English letters, find the first non-repeating character in the string.
+// A non-repeating character is one that occurs exactly once.
+// If no such character exists, print "NO".
+
+// Input Format:
+// A single line containing the string S.
+
+// Constraints:
+// 1 ≤ |S| ≤ 10^5
+// String S consists of lowercase English letters only.
+
+// Output Format:
+// Print the first non-repeating character in S.
+// If there is no non-repeating character, print "NO".
+
+// Sample Input 0:
+// abacabad
+
+// Sample Output 0:
+// c
+
+// Explanation:
+// Frequencies: a=4, b=2, c=1, d=1
+// First non-repeating: c at position 3
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String[] characters = str.split("");
+        Set<String> li = new LinkedHashSet<>();
+
+        for (String ch : characters) {
+            li.add(ch);
+        }
+
+        for (String ch : li) {
+            int count = 0;
+            for (String c : characters) {
+                if (ch.equals(c)) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                System.out.println(ch);
+                return;
+            }
+        }
+
+        System.out.println("NO");
+    }
+}
